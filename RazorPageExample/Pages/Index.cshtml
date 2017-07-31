@@ -2,6 +2,11 @@
 @model IndexModel
 @{
     ViewData["Title"] = "Home Page";
+    //var x = 1;
+    //var y = 2;
+    //var t = (x, y);
+    //ViewData["X"] = t.x;
+    //ViewData["Y"] = t.y;
 }
 
 <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
@@ -71,9 +76,9 @@
     <div class="col-md-3">
         <h2>Application uses</h2>
         <ul>
-            <li>Sample pages using ASP.NET Core Razor Pages</li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=518004">Bower</a> for managing client-side libraries</li>
-            <li>Theming using <a href="https://go.microsoft.com/fwlink/?LinkID=398939">Bootstrap</a></li>
+            <li>Sample C# 7.1 code</li>
+            <li>X: @Model.X</li>
+            <li>Y: @Model.Y</li>
         </ul>
     </div>
     <div class="col-md-3">

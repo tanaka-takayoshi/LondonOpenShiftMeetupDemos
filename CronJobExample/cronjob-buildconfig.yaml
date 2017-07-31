@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: BuildConfig
+metadata:
+  name: cronjobexample
+  annotations:
+    description: Defines how to build the application
+spec:
+  triggers:
+    - type: ImageChange
+      imageChange:
+    - type: ConfigChange
+  runPolicy: Serial
+  source:
+    type: Git
+    git:
+      uri: 'https://github.com/tanaka-takayoshi/LondonOpenShiftMeetupDemos.git'
+      ref: dev
+    contextDir: CronJobExample
+  strategy:
+    type: Source
+    sourceStrategy:
+      from:
+        kind: ImageStreamTag
+        name: 'dotnet-20-rhel7:latest'
+      env:
+        - name: DOTNET_STARTUP_PROJECT
+        - name: DOTNET_ASSEMBLY_NAME
+        - name: DOTNET_NPM_TOOLS
+        - name: DOTNET_TEST_PROJECTS
+        - name: DOTNET_CONFIGURATION
+        - name: DOTNET_PUBLISH
+          value: 'true'
+        - name: DOTNET_RESTORE_SOURCES
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'cronjobexample:latest'

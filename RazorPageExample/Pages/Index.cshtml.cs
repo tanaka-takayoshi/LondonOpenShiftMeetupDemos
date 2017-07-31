@@ -9,9 +9,16 @@ namespace RazorPageExample.Pages
 {
     public class IndexModel : PageModel
     {
+        public int X { get; private set; }
+        public int Y { get; private set; }
+
         public void OnGet()
         {
-
+            var x = 1;
+            var y = 2;
+            var t = (x, y);
+            X = t.x;
+            Y = t.y;
         }
     }
 }
