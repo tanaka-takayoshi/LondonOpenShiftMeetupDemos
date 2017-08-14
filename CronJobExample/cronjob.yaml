@@ -1,0 +1,24 @@
+apiVersion: batch/v2alpha1
+kind: CronJob
+metadata:
+  name: lipsum-cron2
+spec:
+  concurrencyPolicy: Allow
+  jobTemplate:
+    metadata:
+    spec:
+      template:
+        metadata:
+        spec:
+          containers:
+          - command:
+            - /opt/rh/rh-dotnet20/root/bin/dotnet
+            - bin/Release/netcoreapp2.0/CronJobExample.dll
+            image: 172.30.142.2:5000/london-openshift/cronjobexample:latest
+            imagePullPolicy: Always
+            name: lipsum-cron
+            resources: {}
+          restartPolicy: Never
+          securityContext: {}
+          terminationGracePeriodSeconds: 30
+  schedule: '*/1 * * * *'

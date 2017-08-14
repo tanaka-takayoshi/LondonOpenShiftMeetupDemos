@@ -1,0 +1,29 @@
+{
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:52129/",
+      "sslPort": 0
+    }
+  },
+  "profiles": {
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "MYOPTION__SECRETKEY": "MySecretKey",
+        "MYOPTION__SECRETVALUE": "MySecretValue",
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "EnvironmentConfigurationWithSecretExample": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "http://localhost:52130/"
+    }
+  }
+}
