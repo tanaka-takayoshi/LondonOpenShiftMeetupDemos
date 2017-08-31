@@ -1,24 +1,26 @@
-<h1>Weather forecast</h1>
+<h1>TODO Demo</h1>
 
 <p>This component demonstrates fetching data from the server.</p>
+<p *ngIf="config">{{ config.env }}</p>
+<p *ngIf="!config"><em>Loading Configs...</em></p>
 
-<p *ngIf="!forecasts"><em>Loading...</em></p>
+<p *ngIf="!items"><em>Loading...</em></p>
 
-<table class='table' *ngIf="forecasts">
+<table class='table' *ngIf="items">
     <thead>
         <tr>
-            <th>Date</th>
-            <th>Temp. (C)</th>
-            <th>Temp. (F)</th>
-            <th>Summary</th>
+            <th>Id</th>
+            <th>Completed?</th>
+            <th>Description</th>
+            <th>Dedline</th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let forecast of forecasts">
-            <td>{{ forecast.dateFormatted }}</td>
-            <td>{{ forecast.temperatureC }}</td>
-            <td>{{ forecast.temperatureF }}</td>
-            <td>{{ forecast.summary }}</td>
+        <tr *ngFor="let item of items">
+            <td>{{ item.itemId }}</td>
+            <td>{{ item.completed }}</td>
+            <td>{{ item.description }}</td>
+            <td>{{ item.deadline }}</td>
         </tr>
     </tbody>
 </table>

@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using AngularExample.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace AngularExample
 {
@@ -23,6 +25,14 @@ namespace AngularExample
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            var svc = Environment.GetEnvironmentVariable("SQLDB_SVC_NAME"); //SQLSERVER_RHEL_DEV
+            var server = Environment.GetEnvironmentVariable($"{svc}_SERVICE_HOST");
+            var port = Environment.GetEnvironmentVariable($"{svc}_SERVICE_PORT");
+            var user = Environment.GetEnvironmentVariable($"SQLDB_USER");
+            var password = Environment.GetEnvironmentVariable($"SQLDB_PASSWORD");
+            var connection = $@"Server={server},{port};Database=ASPNETCore_SPA_Demo_Dev;User Id={user};Password={password}";
+            services.AddDbContext<ItemContext>(options => options.UseSqlServer(connection));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

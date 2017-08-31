@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { Http } from '@angular/http';
 
 @Component({
@@ -6,18 +6,28 @@ import { Http } from '@angular/http';
     templateUrl: './fetchdata.component.html'
 })
 export class FetchDataComponent {
-    public forecasts: WeatherForecast[];
+    public items: Item[];
+    public config: Config;
 
-    constructor(http: Http, @Inject('ORIGIN_URL') originUrl: string) {
-        http.get(originUrl + '/api/SampleData/WeatherForecasts').subscribe(result => {
-            this.forecasts = result.json() as WeatherForecast[];
+    constructor(http: Http) {
+        http.get('/api/SampleData/TodoItems').subscribe(result => {
+            this.items = result.json() as Item[];
+        });
+
+        http.get('/api/SampleData/Config').subscribe(result => {
+            this.config = result.json() as Config;
         });
     }
 }
 
-interface WeatherForecast {
-    dateFormatted: string;
-    temperatureC: number;
-    temperatureF: number;
-    summary: string;
+interface Item {
+    itemId: number;
+    completed: boolean;
+    description: string;
+    deadline: Date;
 }
+
+interface Config {
+    env: string;
+}
+
