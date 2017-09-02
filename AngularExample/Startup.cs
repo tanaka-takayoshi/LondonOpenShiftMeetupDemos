@@ -31,7 +31,7 @@ namespace AngularExample
             var port = Environment.GetEnvironmentVariable($"{svc}_SERVICE_PORT");
             var user = Environment.GetEnvironmentVariable($"SQLDB_USER");
             var password = Environment.GetEnvironmentVariable($"SQLDB_PASSWORD");
-            var connection = $@"Server={server},{port};Database=ASPNETCore_SPA_Demo_Dev;User Id={user};Password={password}";
+            var connection = $@"Server={server},{port};Database=ASPNETCore_SPA_Demo;User Id={user};Password={password}";
             services.AddDbContext<ItemContext>(options => options.UseSqlServer(connection));
         }
 
